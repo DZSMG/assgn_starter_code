@@ -342,8 +342,9 @@ static void simulateStep(Body &bb) {
 
 // TODO this file is getting too long to work on...
 int main() {
-
-    system("bash deleteImgs.bash");
+    // this will execute the deleteImgs PowerShell script
+    system("powershell -ExecutionPolicy Bypass -File \"../deleteImgs.ps1\"");
+    // system("bash deleteImgs.bash");
 
     // Build a single Milky Way-like galaxy
     std::vector<StarSpec> s0;
@@ -374,6 +375,8 @@ int main() {
 
     std::cout << "\nDone. Wrote " << STEPS << " frames as PPM images." << std::endl;
 
-    system("bash createVideo.bash");
+    // this will execute the createVideo PowerShell script
+    system("powershell -ExecutionPolicy Bypass -File \"../createVideo.ps1\"");
+    // system("bash createVideo.bash");
     return 0;
 }
