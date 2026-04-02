@@ -5,7 +5,7 @@
 #define WIDTH 800
 #define HEIGHT 800
 // ---------------- Simulation setup -------------
-#define NUM_BODIES  (50*1024)   // default number of bodies in disk, 10*1024 --> 50*1024, increased density for realistic simulation
+#define NUM_BODIES  (20*1024)   // default number of bodies in disk, 10*1024 --> 20*1024, increased density for realistic simulation
 #define SYSTEM_SIZE_AU  8.0    // baseline view radius in AU， 10 --> 8, increased frequency of gravitational interactions
 #define DISK_THICKNESS_AU 0.08    // default disk thickness in AU
 #define INNER_BOUND_AU 0.3     // default disk inner radius in AU
@@ -21,7 +21,7 @@
 
 // ---------------- Integrator -----------------
 #define DT (1000.0 * 1024.0) // seconds per step (smaller for stability)
-#define STEPS 100 // number of frames, lower = shorter simulation
+#define STEPS 200 // number of frames, lower = shorter simulation, 100 --> 200, extend simulation
 
 // ---------------- Rendering ------------------
 #define VIEW_HALF_AU SYSTEM_SIZE_AU // +/- AU span mapped to image
