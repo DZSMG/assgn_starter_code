@@ -5,8 +5,8 @@
 #define WIDTH 800
 #define HEIGHT 800
 // ---------------- Simulation setup -------------
-#define NUM_BODIES  (10*1024)   // default number of bodies in disk
-#define SYSTEM_SIZE_AU  10.0    // baseline view radius in AU
+#define NUM_BODIES  (50*1024)   // default number of bodies in disk, 10*1024 --> 50*1024, increased density for realistic simulation
+#define SYSTEM_SIZE_AU  8.0    // baseline view radius in AU， 10 --> 8, increased frequency of gravitational interactions
 #define DISK_THICKNESS_AU 0.08    // default disk thickness in AU
 #define INNER_BOUND_AU 0.3     // default disk inner radius in AU
 
@@ -14,7 +14,7 @@
 #define PI 3.14159265358979323846
 #define AU 1.496e11           // meters per AU
 #define G 6.67408e-11        // m^3 kg^-1 s^-2
-#define SOLAR_MASS 2.0e30             // kg
+#define SOLAR_MASS 4.0e30             // kg, 2.0e30 --> 4.0e30, multiplier by 2 to simulate intermediate mass stars
 #define DISK_MASS_FRAC 0.2             // default disk fraction
 #define SOFTENING_M (0.02 * AU)          // gravitational softening (m)
 #define BH_THETA 0.5                // Barnes–Hut opening angle
