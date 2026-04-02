@@ -4,4 +4,8 @@ project(assgn)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(assgn main.cpp
-        Bhtree.cpp Octant.cpp Bhtree.h Collisions.h Constants.h Octant.h Types.h)
+        Bhtree.cpp Octant.cpp Bhtree.h Collisions.h Constants.h Octant.h Types.h
+        Simulation.cpp
+        Simulation.h
+        Renderer.cpp
+        Renderer.h)
