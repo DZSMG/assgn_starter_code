@@ -55,27 +55,36 @@ inline void checkAndMergeCollision(body& a, body& b, double thresholdAU = COLLIS
  */
 template <typename Bodies>
 inline void mergeAllCollisions(Bodies& bodies, double thresholdAU = COLLISION_THRESHOLD_AU) {
-    const size_t n = bodies.size();
-    if (n < 2) return;
+    // Cast to int to match the distribution type and avoid signed/unsigned mismatch warnings
+    const int n = static_cast<int>(bodies.size());
 
-    // Modern C++ Thread-Safe Random Number Generator
-    static thread_local std::mt19937 rng(std::random_device{}());
-    std::uniform_int_distribution<size_t> dist(0, n - 1);
+    // Early exit: no collisions possible with fewer than 2 bodies
+    if (n <= 1) return;
 
-    // Monte Carlo optimization: Instead of N^2 checks, we do a subset of random checks.
-    // This dramatically improves FPS but makes collisions probabilistic.
-    size_t checks = n * 4; // Arbitrary heuristic multiplier for performance
+    // 'static' ensures the generator persists across calls, avoiding expensive re-seeding
+    // every frame while still producing high-quality uniformly distributed indices.
+    static std::mt19937 rng(std::random_device{}());
+    std::uniform_int_distribution<int> pickIndex(0, n - 1);
 
-    for (size_t k = 0; k < checks; ++k) {
-        size_t i = dist(rng);
-        size_t j = dist(rng);
+    // Number of random collision checks per body.
+    const int samplesPerBody = 10;
 
-        // Ensure distinct bodies and both are active
-        if (i != j && bodies[i].mass > 0.0 && bodies[j].mass > 0.0) {
+    // Outer loop: iterate over every body exactly once.
+    for (int i = 0; i < n; ++i) {
+        if (bodies[i].mass <= 0.0) continue;
+
+        // Inner loop: for each active body, randomly sample a fixed number of partners.
+        for (int s = 0; s < samplesPerBody; ++s) {
+            int j = pickIndex(rng);
+
+            if (j == i) continue;
+            if (bodies[j].mass <= 0.0) continue;
+
+            // Perform the actual distance check and conditional merge.
+            // Only bodies within thresholdAU of each other will be merged.
             checkAndMergeCollision(bodies[i], bodies[j], thresholdAU);
         }
     }
-
 }
 
 #endif // COLLISIONS_H
