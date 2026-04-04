@@ -9,6 +9,7 @@
 #include "Octant.h"
 #include "Bhtree.h"
 #include "Constants.h"
+#include "Parser.h"
 
 // Moved the entire Body struct from main.cpp
 struct Body {

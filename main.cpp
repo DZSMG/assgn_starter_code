@@ -12,13 +12,21 @@
 #include "Types.h"
 #include "Simulation.h"
 #include "Renderer.h"
+#include "Parser.h"
 
 
 /*
  * Task 4: Cleaned up the program to strictly act as the controller.
  * Implement function encapsulation to prevent misuses and namespace pollution.
  */
-int main() {
+int main(int argc, char* argv[]) {
+    SimConfig config;
+
+    // Run Parser - exit if invalid parameters or help menu called
+    if (!parseArguments(argc, argv, config)) {
+        return 1;
+    }
+
     // this will execute the deleteImgs PowerShell script
     system("powershell -ExecutionPolicy Bypass -File \"../deleteImgs.ps1\"");
     // system("bash deleteImgs.bash");

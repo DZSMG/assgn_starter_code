@@ -8,4 +8,7 @@ add_executable(assgn main.cpp
         Simulation.cpp
         Simulation.h
         Renderer.cpp
-        Renderer.h)
+        Renderer.h
+        Parser.cpp
+        Parser.h
+)
