@@ -36,7 +36,7 @@ bool parseArguments(int argc, char* argv[], SimConfig& config) {
                 if (config.systemSize <= 0) throw std::invalid_argument("Size must be strictly positive.");
             }
             else if (arg == "--bodies" && i + 1 < argc) {
-                // Parse as a SIGNED number first to catch negative inputs
+                // Parse as a signed number first to catch negative inputs
                 long long parsedBodies = std::stoll(argv[++i]);
 
                 if (parsedBodies <= 0) {
