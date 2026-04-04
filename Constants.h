@@ -21,7 +21,7 @@
 
 // ---------------- Integrator -----------------
 #define DT (1000.0 * 1024.0) // seconds per step (smaller for stability)
-#define STEPS 200 // number of frames, lower = shorter simulation, 100 --> 200, extend simulation
+#define STEPS 100 // number of frames, lower = shorter simulation
 
 // ---------------- Rendering ------------------
 #define VIEW_HALF_AU SYSTEM_SIZE_AU // +/- AU span mapped to image
