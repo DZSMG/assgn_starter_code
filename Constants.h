@@ -5,7 +5,7 @@
 #define WIDTH 800
 #define HEIGHT 800
 // ---------------- Simulation setup -------------
-#define NUM_BODIES  (20*1024)   // default number of bodies in disk, 10*1024 --> 20*1024, increased density for realistic simulation
+#define NUM_BODIES  (50*1024)   // default number of bodies in disk, 10*1024 --> 50*1024, increased density for realistic simulation
 #define SYSTEM_SIZE_AU  8.0    // baseline view radius in AU， 10 --> 8, increased frequency of gravitational interactions
 #define DISK_THICKNESS_AU 0.08    // default disk thickness in AU
 #define INNER_BOUND_AU 0.3     // default disk inner radius in AU
@@ -28,7 +28,7 @@
 #define RENDER_ZOOM 1.0 // 1.0=default; <1 zoom in, >1 out
 
 // ---------------- Collisions -----------------
-#define COLLISION_THRESHOLD_AU 0.00001 // 1.0e-8 // very small values = collisions are off
+#define COLLISION_THRESHOLD_AU 0.01 // 1.0e-8 --> 0.01 // very small values = collisions are off
 
 // ---------------- Drift / centering ----------
 #define NO_FIX 0
