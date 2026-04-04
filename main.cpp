@@ -24,7 +24,8 @@ int main(int argc, char* argv[]) {
 
     // Run Parser - exit if invalid parameters or help menu called
     if (!parseArguments(argc, argv, config)) {
-        return 1;
+        std::cout.flush();
+        return 0;
     }
 
     // this will execute the deleteImgs PowerShell script
@@ -34,10 +35,10 @@ int main(int argc, char* argv[]) {
     // Build a single Milky Way-like galaxy
     std::vector<StarSpec> s0;
     s0.push_back(makeMilkyWaySpec({0, 0, 0}, {0, 0, 0},
-                                  NUM_BODIES,
+                                  config.numBodies,
                                   1.2 * SOLAR_MASS,
                                   0.3,
-                                  8.0,
+                                  config.systemSize,
                                   0.2,
                                   0.25));
 

@@ -16,6 +16,8 @@ static void printHelp() {
     std::cout << "  --size <val>        Set system size in AU (double)\n";
     std::cout << "  --steps <num>       Set total simulation steps (integer)\n";
     std::cout << "========================================================\n";
+
+    std::cout << std::endl;
 }
 
 bool parseArguments(int argc, char* argv[], SimConfig& config) {
@@ -34,8 +36,15 @@ bool parseArguments(int argc, char* argv[], SimConfig& config) {
                 if (config.systemSize <= 0) throw std::invalid_argument("Size must be strictly positive.");
             }
             else if (arg == "--bodies" && i + 1 < argc) {
-                config.numBodies = std::stoull(argv[++i]);
-                if (config.numBodies == 0) throw std::invalid_argument("Bodies cannot be zero.");
+                // Parse as a SIGNED number first to catch negative inputs
+                long long parsedBodies = std::stoll(argv[++i]);
+
+                if (parsedBodies <= 0) {
+                    throw std::invalid_argument("Bodies must be strictly positive.");
+                }
+
+                // Safe to cast to unsigned size_t now
+                config.numBodies = static_cast<size_t>(parsedBodies);
             }
             else if (arg == "--steps" && i + 1 < argc) {
                 config.steps = std::stoi(argv[++i]);
